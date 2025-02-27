@@ -50,13 +50,13 @@ print(Vendors)
 Task = 0
 extrainfo = ""
 while Task < 6: 
-    print("what would you like to do")
-    print("1. add new info/new person")
+    print('\033[4m' + "what would you like to do?")
+    print('\033[0m'+"1. add new info/new person")
     print("2. access all the Vendors")
     print("3. delete a Vendors info")
     print("4. update a Vendors info")
     print("5. add new info")
-    print("6 Exit")
+    print("6. Exit")
     Task = int(input())
 
     if Task == 1:
