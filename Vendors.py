@@ -47,30 +47,35 @@ Vendors = {
 print(Vendors)#shows the vendors that are currently enterd before going into the loop
 Task = 0 #sets Task to 0 starts the loop as its not greater than 6
 extrainfo = ""#sets extrainfo as empty so they can be used in other parts of the code even if they weren't used yet by the user
-while Task < 6: #loops until something a part from 1,2,3,4,5 is entered
+while Task < 7: #loops until something a part from 1,2,3,4,5 is entered
     print('\033[4m' + "what would you like to do?")#the start of it bolds the line to make it stand out more with out contining it 
     print('\033[0m'+"1. add new info/new person") #\033[0m removes the bold from the text]
     print("2. access all the Vendors")
     print("3. delete a Vendors info")
     print("4. update a Vendors info")
     print("5. add new info")
-    print("6. Exit")
+    print("6. look at one vendor")
+    print("7: Exit")
     Task = int(input()) #allows an input from the user and connects to the if statements 
 
     if Task == 1:#starts the process to allow the user to add new vendors
         print("what is the Vendor you want to add?")
-        vname = input()
+        vname = input() #savesthe name the User entered 
         print("what is their phone number")
-        Vphone = int(input())
+        Vphone = int(input()) #saves the phone number the user entered
         print("what is their email?")
-        Vmail = input()
-        Vendors[vname] = {"name": vname, "number": Vphone, "email": Vmail}#the code that adds the code the user entered in to be made into a new character 
-        print(Vendors)
+        Vmail = input() #saves the email the user entered
+        print("name: ", vname, "number: ", Vphone, "email: ", Vmail)
+
+        #could fix so it adds vendor # (next number)
+
+        Vendors[vname] = {"name": vname, "number": Vphone, "email": Vmail}#the code that adds the code the user entered in to be made into a new vendor
+        print(Vendors) #shows all the Vendors with the new one added
 
     elif Task == 2:
         for vendor, details in Vendors.items():
-            print(f"{vendor}: {details}") #this line of code shows each different vendor on a different line to see the list of them and all their info easily
-        #with out getting lost which info is for which one 
+            print(f"{vendor}: {details}") #this line of code shows each different vendor on a different line
+        #to see the list of them and all their info easily without getting lost on which info is for which Vendor 
         print("")
         print("press enter to continue")#lets the user read the vendors before going back to the main code
         input()
@@ -87,9 +92,9 @@ while Task < 6: #loops until something a part from 1,2,3,4,5 is entered
                 del Vendors[remove]        
                 print(Vendors)#prints the new list vendors after the old one was deleted
             else:
-                print("delete removed returning to menu")
+                print("delete removed returning to menu") #if the user changes their mind
         else:
-            print("vendor doesn't exist")
+            print("vendor doesn't exist")#unsuccessful message
 
 
 
@@ -114,6 +119,23 @@ while Task < 6: #loops until something a part from 1,2,3,4,5 is entered
         Vendors.update({extrainfo: newlineinfo}) #allows the user to add the info if needed but allows them to update einfo and add it to each vendor 
         #this is done incase the user doesn't wanted to add the info 
         print (Vendors)
+
+    elif Task == 6: #allows the user to view one vendor's information with out thhe others
+        print("which number do you want to view ")
+        numin = input()#Vendor enters only a number here and the code does the rest
+        
+        seevendor = "Vendor" + numin #made so the user can just enters a number and get the Vendor they are looking for
+        if seevendor in Vendors: #checks to make sure the vendor exists 
+            print(f"{seevendor}'s Information:\n{Vendors[seevendor]}") #shows the Vendor to the user
+            
+            print("") #adds space so its easier to see
+            print("press enter to continue")#lets the user read the vendors before going back to the main code
+            input()#waits for an input so they User doesn't go back to the menu
+            
+        else:
+            print("vendor doesn't exist")#if the number is not connected to a vendor or wasn't entered correctly 
+            #it will return the user back to the menu
+            
 
     else:
         print("exiting")
